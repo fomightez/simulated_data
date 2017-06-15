@@ -3,7 +3,7 @@ A repository dealing with making various simulated data
 
 Subfolders found here:
 
-* gene_expresion
+* gene_expression
 
 
 Related scripts of mine outside of this repository
