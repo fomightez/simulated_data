@@ -29,9 +29,6 @@
 # v.0.1. basic working version
 #
 # to do:
-# - initially for `ratio_by_region_dictionary` that gets used by `get_ratio_mean` function, I hard-coded it for development phase. NEXT MAKE SO it works with argparse to populate the `get_ratio_mean`-storing dictionary.
-# - fully document at github
-#
 #
 #
 #
