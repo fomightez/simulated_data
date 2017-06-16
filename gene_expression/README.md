@@ -1,6 +1,6 @@
 # Scripts for generating simulated data for gene expression analysis
 
-**DESCRIPTIONS OF THOSE SCRIPTS**
+**DESCRIPTIONS**
 
 ## mock_expression_ratio_generator.py
 
