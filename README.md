@@ -1,5 +1,5 @@
 # simulated_data
-A repository dealing with making various simulated data
+A repository for code that generates various simulated data.
 
 Subfolders found here:
 
