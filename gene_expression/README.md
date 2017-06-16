@@ -26,4 +26,4 @@ Presently, you need to specify in the actual script code the regions by location
 Related scripts by others I have encountered
 ------------------------------------
 
-[sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution ](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html)
+[sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html) - this R function doesn't seem to allow specifically designating regions to alter levels, but you could probably further edit the simulated data to do that for genes in the region in which you are looking to alter the level relative the baseline.
