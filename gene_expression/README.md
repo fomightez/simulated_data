@@ -1,4 +1,8 @@
-# mock_expression_ratio_generator.py
+# Scripts for generating simulated data for gene expression analysis
+
+**DESCRIPTIONS OF THOSE SCRIPTS**
+
+## mock_expression_ratio_generator.py
 
 > The purpose behind `mock_expression_ratio_generator.py` is to generate mock data for illustrating the options in
 the script `plot_expression_across_chromosomes.py` and related scripts.
