@@ -79,7 +79,7 @@ YAL049C	88885.0464234	141912.60533
 
 Image above produced with command:
 
-    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv
+    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv --smooth
 
 using [plot_expression_across_chromosomes.py](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes).
 
