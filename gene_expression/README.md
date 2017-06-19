@@ -21,6 +21,20 @@ An excellent source of the annotation files is the iGenomes page of Illumina's w
 
 Presently, you need to specify in the actual script code the regions by location on the chromosome and to what degree they differ from the baseline. The dictionary storing that information can be found inside the script under the `USER ADJUSTABLE VALUES`. I eventually plan to change that to allow you to specify this information on the command line when you call the script, but this works for now.
 
+**USAGE**
+
+mock_expression_ratio_generator.py is an acessory script to generate mock data
+for plotting with plot_expression_across_chromosomes.py. **** Script by Wayne
+Decatur (fomightez @ github) ***
+positional arguments:
+  ANNOTATION_FILE  Name of file containing the genome annotation. REQUIRED.
+                   This is needed to determine the order of individual data
+                   points along the chromosome and how to display the data
+                   across chromosomes or scaffolds.
+optional arguments:
+  -h, --help       show this help message and exit
+
+
 **EXAMPLE USE AND VISUALIZATION**
 
 **Script preparation:**
