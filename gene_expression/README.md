@@ -101,6 +101,16 @@ Image above produced with command:
 using [plot_expression_across_chromosomes.py found here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes). The file produced by that command calling [plot_expression_across_chromosomes.py](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes) is named `genes_mock_expression_ratios_across_chr.png`.  
 Results show two disomic chromosomes and a signal suggesting a segmental trisomy.
 
+The amplified segment can be seen better when just looking at Chromosome XVI.
+
+![example chromosome plot](genes_mock_expression_ratios_across_chr_XVI.png)
+
+Image above produced with command:
+
+    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv --smooth --chr XVI 
+
+If you have a lot images to make for each chromosome, I suggest checking out the two scripts desrcibed [here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#related), sheperds_chr_thru_plot_expression_across_chromosomes.py and generate_reports_for_genome_and_all_chromosomes_various_samples.py.
+
 Related scripts by others I have encountered
 ------------------------------------
 
