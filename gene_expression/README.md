@@ -107,7 +107,7 @@ The amplified segment can be seen better when just looking at Chromosome XVI.
 
 Image above produced with command:
 
-    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv --smooth --chr XVI 
+    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv --lines --chr XVI --advance_color 16 --smooth
 
 If you have a lot images to make for each chromosome, I suggest checking out the two scripts desrcibed [here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#related), sheperds_chr_thru_plot_expression_across_chromosomes.py and generate_reports_for_genome_and_all_chromosomes_various_samples.py.
 
