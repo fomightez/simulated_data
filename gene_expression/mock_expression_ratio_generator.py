@@ -36,7 +36,7 @@
 # Example,
 # Enter on the command line of your terminal, the line
 #-----------------------------------
-# python mock_expression_ratio_generator.py
+# python mock_expression_ratio_generator.py genes.gtf
 #-----------------------------------
 #
 #
@@ -67,8 +67,7 @@ suffix_for_saving_result = "_mock_expression_ratios.tsv"
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
 "XII":{(1,1078177):2.0},
-"XVI":{(1,98010):3.0, (118010,948010):3.0}
-    
+"XVI":{(1,98010):3.0, (118010,948010):3.0} 
 } # This is a dictionary of dictionaries for each chromosome region that differs
 # from a "typical" mean of 1.0 expression ratio realtive the baseline. The keys 
 # of the main dictionary are the chromosome or scaffold designations. These 
