@@ -23,7 +23,8 @@ Presently, you need to specify in the actual script code the regions by location
 
 **USAGE**
 
-```mock_expression_ratio_generator.py is an acessory script to generate mock data
+``` bash
+mock_expression_ratio_generator.py is an acessory script to generate mock data
 for plotting with plot_expression_across_chromosomes.py. **** Script by Wayne
 Decatur (fomightez @ github) ***
 positional arguments:
