@@ -81,7 +81,7 @@ Image above produced with command:
 
     python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv --smooth
 
-using [plot_expression_across_chromosomes.py found here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes).
+using [plot_expression_across_chromosomes.py found here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes). The file produced by that command calling [plot_expression_across_chromosomes.py](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes) is named `genes_mock_expression_ratios_across_chr.png`.
 
 Related scripts by others I have encountered
 ------------------------------------
