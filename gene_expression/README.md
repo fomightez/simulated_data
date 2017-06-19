@@ -22,9 +22,11 @@ An excellent source of the annotation files is the iGenomes page of Illumina's w
 Presently, you need to specify in the actual script code the regions by location on the chromosome and to what degree they differ from the baseline. The dictionary storing that information can be found inside the script under the `USER ADJUSTABLE VALUES`. I eventually plan to change that to allow you to specify this information on the command line when you call the script, but this works for now.
 
 ## Example Use and Visualization
+
 ** Script preparation: **
 
 Script `USER ADJUSTABLE VALUES  ` edited to have as `ratio_by_region_dictionary`:
+
 ```
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
@@ -76,6 +78,8 @@ YAL049C	88885.0464234	141912.60533
 Image above produced with command:
 
     python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv
+
+using [plot_expression_across_chromosomes.py](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes).
 
 Related scripts by others I have encountered
 ------------------------------------
