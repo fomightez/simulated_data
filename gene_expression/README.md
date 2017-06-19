@@ -60,6 +60,8 @@ YAL049C	88885.0464234	141912.60533
 
 **Results visualized with `plot_expression_across_chromosomes.py`:**
 
+![example plot](simulated_data_double_disomy_plussegmentalDUP_after_plot.png)
+
 Image above produced with command:
 
     python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv
