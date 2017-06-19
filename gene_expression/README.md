@@ -21,6 +21,48 @@ An excellent source of the annotation files is the iGenomes page of Illumina's w
 
 Presently, you need to specify in the actual script code the regions by location on the chromosome and to what degree they differ from the baseline. The dictionary storing that information can be found inside the script under the `USER ADJUSTABLE VALUES`. I eventually plan to change that to allow you to specify this information on the command line when you call the script, but this works for now.
 
+## Example Use and Visualization
+** Command run **
+
+    python mock_expression_ratio_generator.py genes.gtf
+
+
+** First few lines of example output produced in file `genes_mock_expression_ratios.tsv`:**
+```
+gene_id	mock_base	mock_exp
+YAL069W	66022.6853093	147381.19018
+YAL068W-A	85240.4848535	331358.926347
+YAL068C	86245.9503597	171221.048364
+YAL067W-A	95421.1683197	293475.594665
+YAL067C	75617.061132	67246.625205
+YAL066W	89931.0568079	95933.6236498
+YAL065C	70577.9945921	237409.443024
+YAL064W-B	74548.5676547	72217.644534
+YAL064C-A	74102.1236196	139528.566449
+YAL064W	77790.9892057	159623.579542
+YAL063C-A	79882.7099824	121557.359111
+YAL063C	82324.5824206	83710.5695801
+YAL062W	100232.91788	238335.704026
+YAL061W	92398.82293	217455.526866
+YAL060W	78405.2043619	194252.535343
+YAL059C-A	81118.0267187	54570.3793915
+YAL059W	99701.5638416	185200.781503
+YAL058W	98476.3743546	144943.862158
+YAL056C-A	86021.6875871	197063.270245
+YAL056W	64135.3251631	89310.5203018
+YAL055W	92642.5835955	312566.516616
+YAL054C	81610.944506	192689.717274
+YAL053W	93002.6771963	197350.819283
+YAL051W	68014.3468141	96504.8679948
+YAL049C	88885.0464234	141912.60533
+...
+```
+
+**Results visualized with `plot_expression_across_chromosomes.py`:**
+
+Image above produced with command:
+
+    python plot_expression_across_chromosomes.py genes.gtf genes_mock_expression_ratios.tsv
 
 Related scripts by others I have encountered
 ------------------------------------
