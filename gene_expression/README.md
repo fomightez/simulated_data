@@ -23,7 +23,7 @@ Presently, you need to specify in the actual script code the regions by location
 
 ## Example Use and Visualization
 
-** Script preparation: **
+**Script preparation:**
 
 Script `USER ADJUSTABLE VALUES  ` edited to have as `ratio_by_region_dictionary`:
 
@@ -35,12 +35,14 @@ ratio_by_region_dictionary = {
 }
 ```
 
-** Command run **
+This is to specify which regions do not have a 1:1 ratio.
+
+**Command run**
 
     python mock_expression_ratio_generator.py genes.gtf
 
 
-** First few lines of example output produced in file `genes_mock_expression_ratios.tsv`:**
+**First few lines of example output produced in file `genes_mock_expression_ratios.tsv`:**
 ```
 gene_id	mock_base	mock_exp
 YAL069W	66022.6853093	147381.19018
