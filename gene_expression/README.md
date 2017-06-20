@@ -92,7 +92,7 @@ YAL049C	88885.0464234	141912.60533
 
 **Results visualized with `plot_expression_across_chromosomes.py`:**
 
-![example plot](genes_mock_expression_ratios_across_chr.png)
+![example plot](example_imgs/genes_mock_expression_ratios_across_chr.png)
 
 Image above produced with command:
 
@@ -103,7 +103,7 @@ Results show two disomic chromosomes and a signal suggesting a segmental trisomy
 
 The amplified segment in the simulated data can be seen better when just looking at Chromosome XVI.
 
-![example chromosome plot](genes_mock_expression_ratios_across_chr_XVI.png)
+![example chromosome plot](example_imgs/genes_mock_expression_ratios_across_chr_XVI.png)
 
 Image above produced with command:
 
