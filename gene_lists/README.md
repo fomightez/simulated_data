@@ -6,7 +6,7 @@ My code
 **DESCRIPTIONS**
 
 
-## make_simulated_yeast_gene_set.py
+### make_simulated_yeast_gene_set.py
 
 
 > [make_simulated_yeast_gene_set.py](https://github.com/fomightez/yeastmine/blob/master/make_simulated_yeast_gene_set.py) makes a a simulated yeast gene set of user-determined size and saves a file of the gene list using the SGD systematic IDs each on individual lines. That script is useful for testing scripts and online services or making dummy documentation entries.
