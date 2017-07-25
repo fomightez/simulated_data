@@ -5,7 +5,7 @@ My code
 
 **DESCRIPTIONS**
 
-## mock_expression_ratio_generator.py
+### mock_expression_ratio_generator.py
 
 > The purpose behind `mock_expression_ratio_generator.py` is to generate mock summary RNA-Seq data demostrating anueploidy in a genome to fully show the ability of the script `plot_expression_across_chromosomes.py` and related scripts.
 
