@@ -1,9 +1,9 @@
 # simulated_data
 A repository for code that generates various simulated data.
 
-Subfolders found here:
+Subfolders found here concern:
 
-* [gene_expression](https://github.com/fomightez/simulated_data/tree/master/gene_expression)
+* [gene expression](https://github.com/fomightez/simulated_data/tree/master/gene_expression)
 
 
 Related scripts of mine outside of this repository
