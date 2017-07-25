@@ -121,4 +121,4 @@ Related software by others I have encountered
 Related resources
 ----------------
 
-[On the importance of controls, even when the tools are computational](http://rnainformation.blogspot.co.nz/2017/07/on-importance-of-controls-even-when.html) by Paul Gardner discusses controls for RNA-Seq data.
+* [On the importance of controls, even when the tools are computational](http://rnainformation.blogspot.co.nz/2017/07/on-importance-of-controls-even-when.html) by Paul Gardner discusses controls for RNA-Seq data.
