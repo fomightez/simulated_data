@@ -111,7 +111,9 @@ Image above produced with command:
 
 If you have a lot images to make for each chromosome, I suggest checking out the two scripts desrcibed [here](https://github.com/fomightez/sequencework/tree/master/plot_expression_across_chromosomes#related), sheperds_chr_thru_plot_expression_across_chromosomes.py and generate_reports_for_genome_and_all_chromosomes_various_samples.py.
 
-Related scripts by others I have encountered
-------------------------------------
+Related software by others I have encountered
+--------------------------------------------
 
-[sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html) - this R function doesn't seem to allow specifically designating regions to alter levels, but you could probably further edit the simulated data to do that for genes in the region in which you are looking to alter the level relative the baseline.
+* [sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html) - this R function doesn't seem to allow specifically designating regions to alter levels, but you could probably further edit the simulated data to do that for genes in the region in which you are looking to alter the level relative the baseline.
+
+* [Splatter: Simulation Of Single-Cell RNA-seq](http://www.biorxiv.org/content/early/2017/07/24/133173?rss=1) -  Bioconductor (R) package for simple, reproducible and well-documented simulation of single-cell RNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types or differentiation paths.
