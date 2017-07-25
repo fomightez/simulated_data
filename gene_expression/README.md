@@ -1,4 +1,7 @@
-# Scripts for generating simulated data for gene expression analysis
+# Scripts and resources for generating simulated data for gene expression analysis
+
+My code
+-------
 
 **DESCRIPTIONS**
 
