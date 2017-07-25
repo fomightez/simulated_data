@@ -5,6 +5,9 @@ Subfolders found here concern:
 
 * [gene expression](https://github.com/fomightez/simulated_data/tree/master/gene_expression)
 
+* [gene lists](https://github.com/fomightez/simulated_data/tree/master/gene_lists)
+
+* [general computational data](https://github.com/fomightez/simulated_data/tree/master/general)
 
 Related scripts of mine outside of this repository
 -------------------------
