@@ -117,3 +117,8 @@ Related software by others I have encountered
 * [sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html) - this R function doesn't seem to allow specifically designating regions to alter levels, but you could probably further edit the simulated data to do that for genes in the region in which you are looking to alter the level relative the baseline.
 
 * [Splatter: Simulation Of Single-Cell RNA-seq](http://www.biorxiv.org/content/early/2017/07/24/133173?rss=1) -  Bioconductor (R) package for simple, reproducible and well-documented simulation of single-cell RNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types or differentiation paths.
+
+Related resources
+----------------
+
+[On the importance of controls, even when the tools are computational](http://rnainformation.blogspot.co.nz/2017/07/on-importance-of-controls-even-when.html) by Paul Gardner discusses controls for RNA-Seq data.
