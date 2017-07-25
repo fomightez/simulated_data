@@ -3,7 +3,7 @@ A repository for code that generates various simulated data.
 
 Subfolders found here:
 
-* gene_expression
+* [gene_expression](https://github.com/fomightez/simulated_data/tree/master/gene_expression)
 
 
 Related scripts of mine outside of this repository
