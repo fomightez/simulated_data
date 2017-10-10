@@ -11,7 +11,7 @@ My code
 Related software by others I have encountered
 --------------------------------------------
 
-* [high-throughput sequencing data from phylogenetic relationships](https://github.com/fomightez/simulated_data/tree/master/across_phylogeny), billed as "Pipeline to generate NGS reads from a phylogeny".
+* [TreeToReads - Pipeline to generate NGS reads from a phylogeny](https://github.com/snacktavish/TreeToReads). Looks like it generates simulated high-throughput sequencing data from phylogenetic relationships; says generated mock data is useful "to test effects of model of evolution, rates of evolution, genomic distribution of mutations, and phylogenetic relatedness of samples and of reference genome on SNP calling and evolutionary inference."
 
 Related resources
 ----------------
