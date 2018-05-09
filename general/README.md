@@ -28,6 +28,10 @@ Related software by others I have encountered
 
 * [wakefield](https://github.com/trinker/wakefield) - generates random R data sets and has some tools for visualization
 
+* >"Need to mock or fake something in #Rstats? Check out these packages of @sckottie's at @rOpenSci
+📦 https://github.com/ropensci/charlatan … for creating fake data
+📦 https://github.com/ropensci/webmockrfor … for stubbing and setting expectations on HTTP requests" - https://twitter.com/ma_salmon/status/993736067022053377
+
 Related resources
 ----------------
 
