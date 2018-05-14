@@ -1,4 +1,4 @@
-#Directory and file traversing demo
+# Directory and file traversing demo
 
 Python scripts by Wayne Decatur for demonstrating Directory and file traversing.
 
@@ -10,7 +10,7 @@ Done along the lines of approach requested by Linlin Zhao <linlin.zhao mail at u
 
 
 
-####Dependencies
+#### Dependencies
 
 Nothing but the fairly standard modules such as os.
 
