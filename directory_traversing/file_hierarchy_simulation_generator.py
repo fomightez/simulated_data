@@ -6,7 +6,10 @@
 #
 #
 #*******************************************************************************
-# USES Python 2.7
+# Verified compatible with both Python 2.7 and Python 3.6; written initially in 
+# Python 2.7. 
+#
+#
 # PURPOSE: generate fake file hierarchy for testing iterative processing of
 # folders containing genome and protein sequence information.
 #
@@ -24,7 +27,7 @@
 #-----------------------------------
 # python file_hierarchy_simulation_generator.py
 #-----------------------------------
-# or run in your favorite IDE, such as IDLE or Canopy.
+# Or paste into a Jupyter notbeooks cell and run.
 #
 #
 #*******************************************************************************
@@ -98,7 +101,8 @@ genomes_to_use = (
 
 
 ###-----------------Actual Main function of script---------------------------###
-# last example at http://pymotw.com/2/ospath/ has a nice example where it makes # simple directory heierarchy with files. This is based on that.
+# last example at http://pymotw.com/2/ospath/ has a nice example where it makes 
+# simple directory heierarchy with files. This is based on that.
 import os
 
 for idx, directory in enumerate(directories_to_make):
