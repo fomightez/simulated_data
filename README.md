@@ -11,3 +11,12 @@ Subfolders found here concern:
 
 * [general computational data](https://github.com/fomightez/simulated_data/tree/master/general)
 
+
+
+Related
+-------
+
+https://twitter.com/pathogenomenick/status/1037346467462176769
+>"Go and grab 130G of long-read mock microbial community data from PromethION and 36G from MinION over here, if you fancy:
+https://github.com/LomanLab/mockcommunity … #UKGS18 - could be useful for bioinformatics pipeline validation and method development!"
+
