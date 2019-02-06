@@ -1,0 +1,30 @@
+
+# Geerate Sequence data
+
+
+Software by others I have encountered
+-------------------------------------
+
+- Simple Python functions
+
+  - For making the simple `def generate_DNA(N)` function in  [Decoding translation in the cloud and at NCBI:Exercise for Upstate Summer Career Awareness Day](https://github.com/fomightez/uscad16/blob/644bcb71bacd0f34f3f3f80a0cc07b26bd6998bd/Decoding%20translation%20in%20the%20cloud%20and%20at%20NCBI.ipynb) I borrowed from [Illustrating Python via Bioinformatics Examples (Bioinf-py)](http://hplgit.github.io/bioinf-py/doc/web/index.html)
+
+  - http://jacksimpson.co/how-to-create-random-dna-sequences-with-python/
+
+
+- Advanced Python-based software
+
+  - NullSeq https://www.ncbi.nlm.nih.gov/pubmed/27835644  https://github.com/amarallab/NullSeq
+  >" Using the principle of maximum entropy, we developed a method that generates unbiased random sequences with pre-specified amino acid and GC content, which we have developed into a python package. "
+
+
+  - Randomseq.py http://www.medcrave.com/articles/det/15292/Randomseq-python-command-ndash-line-random-sequence-generator https://medcraveonline.com/MOJPB/MOJPB-07-00235.pdf [code at https://github.com/mauriceling/bactome; (secret looks like a good package to at least know about); references NullSeq and seems to add more bells and whistles
+
+
+
+Related
+-------
+
+See [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression) for generating RNA-seq mainly/only(?) count data.
+
+The bottom of [the top page in this repo](https://github.com/fomightez/simulated_data) references a link to [long-read mock microbial community data from PromethION and 36G from MinION ](https://github.com/LomanLab/mockcommunity).
