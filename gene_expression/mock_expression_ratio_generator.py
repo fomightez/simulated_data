@@ -29,6 +29,9 @@
 # v.0.1. basic working version
 #
 # to do:
+# - initially for `ratio_by_region_dictionary` that gets used by `get_ratio_mean` function, I hard-coded it for development phase. NEXT MAKE SO it works with argparse to populate the `get_ratio_mean`-storing dictionary.
+# - fully document at github
+#
 #
 #
 #
@@ -60,6 +63,26 @@ genome_annotation_fields_for_gff = ("seqname", "source", "feature type", "start"
 genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name", 
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
+column_types_for_gff  = {"seqname":'category',
+                "source":'category',
+                "feature type":'category',
+                "start":'int64',
+                "end":'int64',
+                "score":'category',
+                "strand":'category',
+                "frame":'category',
+                "group":'category',
+               }
+column_types_for_gtf = {"seqname":'category',
+                "source":'category',
+                "feature type":'category',
+                "start":'int64',
+                "end":'int64',
+                "score":'category',
+                "strand":'category',
+                "frame":'category',
+                "attribute":'category',
+               }
 
 suffix_for_saving_result = "_mock_expression_ratios.tsv"
 
@@ -413,7 +436,7 @@ def make_mock_expression_values(row):
     expression ratio, has been added as `level_val` and uses that to calculate
     some mock data values for the wild-type(baseline) and experimental strain
 
-    returns two values:
+    returns a dataframe row (series) with two values added:
     first value is the wild-type(baseline) value
     second is the experimental strain values
     '''
@@ -473,21 +496,29 @@ annotaton_file = args.annotation
 # Because it is very related and a good approach, this essentially just
 # follows the initial code of `plot_expression_across_chromosomes.py`
 # open annotation file and make it a Pandas dataframe
-sys.stderr.write("\n\
-    Reading annotation file and getting data on genes and chromosomes...")
+sys.stderr.write("\nReading annotation file and getting data on genes and "
+    "chromosomes...")
 #determine if annotation is gff or gtf
 if "gff" in annotaton_file.name.lower():
     col_names_to_apply = genome_annotation_fields_for_gff 
+    column_types = column_types_for_gff
+
 if "gtf" in annotaton_file.name.lower():
     col_names_to_apply = genome_annotation_fields_for_gtf 
+    column_types = column_types_for_gtf
+
 
 # read in annotation file
-init_genome_df = pd.read_table(
-    annotaton_file, header=None, names=col_names_to_apply, comment='#')
-# comment handling added because I came across gtfs with a header that had `#` 
-# at start of each line. Others must have seen same because I saw someone 
-# dealing with it at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I 
-# cannot use that solution since I use Pandas read_table function.
+init_genome_df = pd.read_csv(
+    annotaton_file, sep='\t', header=None, low_memory=True,
+    names=col_names_to_apply, comment='#',dtype=column_types) # comment handling 
+# added because I came across gtfs with a header that had `#`  at start of each 
+# line. Others must have encountered same because I saw someone dealing with it 
+# at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I cannot use that 
+# solution since I use Pandas read_csv function. (`read_table`) was 
+# deprecated recently. dtypes added when speed and working with large files
+# became an issue, see 
+# https://github.com/fomightez/sequencework/issues/1#issuecomment-465760222
 
 # parse out gene_ids from attribute or group, i.e., 9th column in the annotation file
 init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
