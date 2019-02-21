@@ -1,5 +1,5 @@
 
-# Geerate Sequence data
+# Generate Sequence data
 
 
 Software by others I have encountered
