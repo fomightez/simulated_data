@@ -1,7 +1,13 @@
 #!/usr/bin/env python
+# mock_expression_ratio_generator.py
+__author__ = "Wayne Decatur" #fomightez on GitHub
+__license__ = "MIT"
+__version__ = "0.1.0"
+
 
 # mock_expression_ratio_generator.py by Wayne Decatur
-
+# ver 0.1
+#
 #*******************************************************************************
 # Written in Python 2.7 to be compatible with Python 3.
 #
@@ -47,12 +53,16 @@
 #
 
 
+
+
+
 #*******************************************************************************
 ##################################
 #  USER ADJUSTABLE VALUES        #
 
 ##################################
 #
+
 
 # `genome_annotation_fields` to match your genome annotation source data. You'll 
 # most likely only need one of these. 
@@ -103,19 +113,9 @@ ratio_by_region_dictionary = {
 # anything, and so in order to cover the whole chromosome, you can just specify
 # an outrageously high value.
 
- 
-
 #
 #*******************************************************************************
 #**********************END USER ADJUSTABLE VARIABLES****************************
-
-
-
-
-
-
-
-
 
 
 
@@ -143,7 +143,6 @@ import random
 
 
 ###---------------------------HELPER FUNCTIONS---------------------------------###
-
 
 def generate_output_file_name(file_name, suffix):
     '''
@@ -446,12 +445,149 @@ def make_mock_expression_values(row):
     return row
 
 
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
-###--------------------------END OF HELPER FUNCTIONS---------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
+###--------------------------END OF HELPER FUNCTIONS-------------------------###
 
 
 
 
+
+
+#*******************************************************************************
+###------------------------'main' function of script--------------------------##
+
+def mock_expression_ratio_generator(annotaton_file):
+    '''
+    Main function of script. 
+
+    Simplisitcally make data that can be used as input for the script 
+    `plot_expression_across_chromosomes.py`.
+    Allows for generating different relative ration for regions and chromosomes.
+    '''
+    # ANNOTATION FILE ACCESSING AND GENOME DATAFRAME INITIAL PREPARATION
+    # Because it is very related and a good approach, this essentially just
+    # follows the initial code of `plot_expression_across_chromosomes.py`
+    # open annotation file and make it a Pandas dataframe
+    sys.stderr.write("\nReading annotation file and getting data on genes and "
+        "chromosomes...")
+    #determine if annotation is gff or gtf
+    if "gff" in annotaton_file.name.lower():
+        col_names_to_apply = genome_annotation_fields_for_gff 
+        column_types = column_types_for_gff
+
+    if "gtf" in annotaton_file.name.lower():
+        col_names_to_apply = genome_annotation_fields_for_gtf 
+        column_types = column_types_for_gtf
+
+
+    # read in annotation file
+    init_genome_df = pd.read_csv(
+        annotaton_file, sep='\t', header=None, low_memory=True,
+        names=col_names_to_apply, comment='#',dtype=column_types) # comment handling 
+    # added because I came across gtfs with a header that had `#`  at start of each 
+    # line. Others must have encountered same because I saw someone dealing with it 
+    # at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I cannot use that 
+    # solution since I use Pandas read_csv function. (`read_table`) was 
+    # deprecated recently. dtypes added when speed and working with large files
+    # became an issue, see 
+    # https://github.com/fomightez/sequencework/issues/1#issuecomment-465760222
+
+    # parse out gene_ids from attribute or group, i.e., 9th column in the 
+    #annotation file
+    init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
+
+    # copy each row to a new dataframe, unless gene already present. 
+    # This wil give me unique gene_ids for each and I can make that index.
+    # Because it takes first occurence of each gene, it only has that as start and
+    # end. Then to get the full range of data for start and end for each gene, I can
+    # subset the initial dataframe on each gene_id and get the min and max and use
+    # those values to replace `start` and `end` for the new dataframe. For those
+    # on Crick strand, it will turn around the start, end information, but that is
+    # fine since just want an avg relative position and don't care about direction.
+    genome_df = pd.DataFrame(columns=init_genome_df.columns)
+    for i, row in init_genome_df.iterrows():
+        if not any(genome_df.gene_id == row.gene_id):
+            genome_df = genome_df.append(row)
+    genome_df = genome_df.set_index('gene_id')
+    for id in list(genome_df.index.values):
+        sub_df = init_genome_df.loc[init_genome_df["gene_id"] == id]
+        min_val = min(sub_df[["start","end"]].min()) # `sub_df["start","end"].min()` 
+        # gives values for the two columns and so min() of that gives single 
+        #value
+        max_val = max(sub_df[["start","end"]].max())
+        genome_df.loc[id, "start"] = min_val
+        genome_df.loc[id, "end"] = max_val
+    # provide feedback on number of unique genes identified
+    sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
+    # calculate average position
+    # genome_df["position"] = genome_df[["start","end"]].apply(np.mean, axis=1) # gives float and I'd prefer as integer
+    genome_df["position"] = genome_df.apply(calculate_position, axis=1)
+    # make a column of chrosomes as numbers, either converting from the string 
+    # they would be by default (I think?) or converting from roman numerals. 
+    # This will be used for sorting later
+    # First determine if chromosomes are numbers with X and Y (and others?) or 
+    # ifin the form of roman numerals
+    chromosomes_in_roman_num = False
+    # check if majority look like integers. If that is the case verify most are 
+    # valid roman numerals just to be sure.
+    seqname_set = set(genome_df['seqname'].tolist())
+    chromosomes_in_roman_num = not bool(len([s for s in seqname_set if s.isdigit()]) > len(seqname_set)/2) #checks if most chromosomes seem to be digits and says they are roman numerals if that is false
+    if chromosomes_in_roman_num:
+        most_valid_rom_numerals = bool(len([n for n in seqname_set if checkIfRomanNumeral(n)]) > len(seqname_set)/2)
+        # provide feedback if don't seem to be roman numerals
+        if not most_valid_rom_numerals:
+            sys.stderr.write("***WARNING***The chromosomes seem to not be in "
+                "numeric form, but most aren't valid roman numerals "
+                "either.***WARNING***....")
+        else:
+            sys.stderr.write("The chromosomes appear to be in roman numeral "
+                "form....")
+    else:
+        sys.stderr.write("The chromosomes appear to be in numeric form....")
+    # Second, convert if `chromosomes_in_roman_num` otherwise just try to coerce 
+    # string to integer, allowing not to coerce and not throw an error in case 
+    # of the sex chromosomes
+    if chromosomes_in_roman_num:
+        # try and convert each row but allow for non type change without error
+        genome_df["chr_as_numeric"] = genome_df.apply(
+            seqname_roman_to_numeric, axis=1)
+    else:
+        genome_df["chr_as_numeric"] = genome_df.apply(
+            seqname_string_to_numeric, axis=1)
+    longest_chr_or_scaffold = len(max(seqname_set, key=len))
+    # Prepare genome dataframe for adding the mock data by adding a column for relative 
+    # level and fill with 'NaN'
+    genome_df["level_val"] = np.nan
+
+
+
+    # For ease and consistency between the related scripts, add the mock data to 
+    # the "level_val" column that is made in the course of the initial part of 
+    # script `plot_expression_across_chromosomes.py`
+    sys.stderr.write("Filling in the mock values for each gene...")
+    genome_df["level_val"] = genome_df.apply(get_ratio_value, axis=1)
+
+
+    # Now make mock data for the base and experimental based on the ratio needed
+    genome_df = genome_df.apply(make_mock_expression_values, axis=1) # based on 
+    # Nelz1's answer at 
+    # https://stackoverflow.com/questions/23586510/return-multiple-columns-from-apply-pandas
+    # because couldn't use approach I used for `genome_df["level_val"] = genome_df.apply(get_ratio_value, axis=1)`
+    # since need to make multiple columns for result and couldn't do leaving off
+    # `axis=1` because want a different random value for each row and not one for
+    # the entire column (although probably would have been fine mostly for here)
+
+
+
+    # Write the gene id and mock levels to a Tab-separated values text file
+    extracted_df = genome_df[['mock_base','mock_exp']].copy() # based on http://stackoverflow.com/questions/34682828/pandas-extracting-specific-selected-columns-from-a-dataframe-to-new-dataframe ,
+    # see `Process of making median and mean TPM tables for NMD targets.md`
+    output_file_name = generate_output_file_name(annotaton_file.name, suffix_for_saving_result)
+    extracted_df.to_csv(output_file_name, sep='\t',index = True) 
+    sys.stderr.write( "\nMock data saved as: {}\n".format(output_file_name))
+
+###--------------------------END OF MAIN FUNCTION----------------------------###
+###--------------------------END OF MAIN FUNCTION----------------------------###
 
 
 
@@ -463,150 +599,62 @@ def make_mock_expression_values(row):
 
 
 #*******************************************************************************
-###-----------------for parsing command line arguments-----------------------###
-parser = argparse.ArgumentParser(prog='mock_expression_ratio_generator.py',
+###------------------------'main' section of script---------------------------##
+def main():
+    """ Main entry point of the script """
+    # placing actual main action in a 'helper'script so can call that easily 
+    # with a distinguishing name in Jupyter notebooks, where `main()` may get
+    # assigned multiple times depending how many scripts imported/pasted in.
+    kwargs = {}
+    #if df_save_as_name == 'no_pickling':
+    #   kwargs['pickle_df'] = False
+    #kwargs['return_df'] = False #probably don't want dataframe returned if 
+    # calling script from command line
+    mock_expression_ratio_generator(annotaton_file,**kwargs)
+    # using https://www.saltycrane.com/blog/2008/01/how-to-use-args-and-kwargs-in-python/#calling-a-function
+    # to build keyword arguments to pass to the function above
+    # (see https://stackoverflow.com/a/28986876/8508004 and
+    # https://stackoverflow.com/a/1496355/8508004 
+    # (maybe https://stackoverflow.com/a/7437238/8508004 might help too) for 
+    # related help). Makes it easy to add more later.
+
+
+
+
+
+if __name__ == "__main__" and '__file__' in globals():
+    """ This is executed when run from the command line """
+    # Code with just `if __name__ == "__main__":` alone will be run if pasted
+    # into a notebook. The addition of ` and '__file__' in globals()` is based
+    # on https://stackoverflow.com/a/22923872/8508004
+    # See also https://stackoverflow.com/a/22424821/8508004 for an option to 
+    # provide arguments when prototyping a full script in the notebook.
+    ###-----------------for parsing command line arguments-------------------###
+    import argparse
+    parser = argparse.ArgumentParser(prog='mock_expression_ratio_generator.py',
     description="mock_expression_ratio_generator.py is an acessory script to \
     generate mock data for plotting with plot_expression_across_chromosomes.py.\
     **** Script by Wayne Decatur   \
     (fomightez @ github) ***")
 
-parser.add_argument("annotation", help="Name of file containing the genome \
+    parser.add_argument("annotation", help="Name of file containing the genome \
     annotation. REQUIRED. This is needed to determine the order of individual \
     data points along the chromosome and how to display the data across \
     chromosomes or scaffolds.", 
     type=argparse.FileType('r'), metavar="ANNOTATION_FILE")
 
 
-#I would also like trigger help to display if no arguments provided because need at least one input file
-if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
-    parser.print_help()
-    sys.exit(1)
-args = parser.parse_args()
-annotaton_file = args.annotation
+
+    #I would also like trigger help to display if no arguments provided because 
+    #need at least one input file
+    if len(sys.argv)==1:    #from http://stackoverflow.com/questions/4042452/display-help-message-with-python-argparse-when-script-is-called-without-any-argu
+        parser.print_help()
+        sys.exit(1)
+    args = parser.parse_args()
+    annotaton_file = args.annotation
 
 
-
-
-
-
-
-###-----------------Actual Main portion of script---------------------------###
-
-# ANNOTATION FILE ACCESSING AND GENOME DATAFRAME INITIAL PREPARATION
-# Because it is very related and a good approach, this essentially just
-# follows the initial code of `plot_expression_across_chromosomes.py`
-# open annotation file and make it a Pandas dataframe
-sys.stderr.write("\nReading annotation file and getting data on genes and "
-    "chromosomes...")
-#determine if annotation is gff or gtf
-if "gff" in annotaton_file.name.lower():
-    col_names_to_apply = genome_annotation_fields_for_gff 
-    column_types = column_types_for_gff
-
-if "gtf" in annotaton_file.name.lower():
-    col_names_to_apply = genome_annotation_fields_for_gtf 
-    column_types = column_types_for_gtf
-
-
-# read in annotation file
-init_genome_df = pd.read_csv(
-    annotaton_file, sep='\t', header=None, low_memory=True,
-    names=col_names_to_apply, comment='#',dtype=column_types) # comment handling 
-# added because I came across gtfs with a header that had `#`  at start of each 
-# line. Others must have encountered same because I saw someone dealing with it 
-# at https://github.com/shenlab-sinai/ngsplotdb/pull/2/files. I cannot use that 
-# solution since I use Pandas read_csv function. (`read_table`) was 
-# deprecated recently. dtypes added when speed and working with large files
-# became an issue, see 
-# https://github.com/fomightez/sequencework/issues/1#issuecomment-465760222
-
-# parse out gene_ids from attribute or group, i.e., 9th column in the annotation file
-init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
-
-# copy each row to a new dataframe, unless gene already present. 
-# This wil give me unique gene_ids for each and I can make that index.
-# Because it takes first occurence of each gene, it only has that as start and
-# end. Then to get the full range of data for start and end for each gene, I can
-# subset the initial dataframe on each gene_id and get the min and max and use
-# those values to replace `start` and `end` for the new dataframe. For those
-# on Crick strand, it will turn around the start, end information, but that is
-# fine since just want an avg relative position and don't care about direction.
-genome_df = pd.DataFrame(columns=init_genome_df.columns)
-for i, row in init_genome_df.iterrows():
-    if not any(genome_df.gene_id == row.gene_id):
-        genome_df = genome_df.append(row)
-genome_df = genome_df.set_index('gene_id')
-for id in list(genome_df.index.values):
-    sub_df = init_genome_df.loc[init_genome_df["gene_id"] == id]
-    min_val = min(sub_df[["start","end"]].min()) # `sub_df["start","end"].min()` gives values for the two columns and so min() of that gives single value
-    max_val = max(sub_df[["start","end"]].max())
-    genome_df.loc[id, "start"] = min_val
-    genome_df.loc[id, "end"] = max_val
-# provide feedback on number of unique genes identified
-sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
-# calculate average position
-# genome_df["position"] = genome_df[["start","end"]].apply(np.mean, axis=1) # gives float and I'd prefer as integer
-genome_df["position"] = genome_df.apply(calculate_position, axis=1)
-# make a column of chrosomes as numbers, either converting from the string they
-# would be by default (I think?) or converting from roman numerals. This will be
-# used for sorting later
-# First determine if chromosomes are numbers with X and Y (and others?) or if
-# in the form of roman numerals
-chromosomes_in_roman_num = False
-# check if majority look like integers. If that is the case verify most are 
-# valid roman numerals just to be sure.
-seqname_set = set(genome_df['seqname'].tolist())
-chromosomes_in_roman_num = not bool(len([s for s in seqname_set if s.isdigit()]) > len(seqname_set)/2) #checks if most chromosomes seem to be digits and says they are roman numerals if that is false
-if chromosomes_in_roman_num:
-    most_valid_rom_numerals = bool(len([n for n in seqname_set if checkIfRomanNumeral(n)]) > len(seqname_set)/2)
-    # provide feedback if don't seem to be roman numerals
-    if not most_valid_rom_numerals:
-        sys.stderr.write("***WARNING***The chromosomes seem to not be in numeric form, but most aren't valid roman numerals either.***WARNING***....")
-    else:
-        sys.stderr.write("The chromosomes appear to be in roman numeral form....")
-else:
-    sys.stderr.write("The chromosomes appear to be in numeric form....")
-# Second, convert if `chromosomes_in_roman_num` otherwise just try to coerce string to integer, allowing not to coerce and not throw an error in case of the sex chromosomes
-if chromosomes_in_roman_num:
-    # try and convert each row but allow for non type change without error
-    genome_df["chr_as_numeric"] = genome_df.apply(
-        seqname_roman_to_numeric, axis=1)
-else:
-    genome_df["chr_as_numeric"] = genome_df.apply(
-        seqname_string_to_numeric, axis=1)
-longest_chr_or_scaffold = len(max(seqname_set, key=len))
-# Prepare genome dataframe for adding the mock data by adding a column for relative 
-# level and fill with 'NaN'
-genome_df["level_val"] = np.nan
-
-
-
-# For ease and consistency between the related scripts, add the mock data to 
-# the "level_val" column that is made in the course of the initial part of 
-# script `plot_expression_across_chromosomes.py`
-sys.stderr.write("Filling in the mock values for each gene...")
-genome_df["level_val"] = genome_df.apply(get_ratio_value, axis=1)
-
-
-# Now make mock data for the base and experimental based on the ratio needed
-genome_df = genome_df.apply(make_mock_expression_values, axis=1) # based on 
-# Nelz1's answer at 
-# https://stackoverflow.com/questions/23586510/return-multiple-columns-from-apply-pandas
-# because couldn't use approach I used for `genome_df["level_val"] = genome_df.apply(get_ratio_value, axis=1)`
-# since need to make multiple columns for result and couldn't do leaving off
-# `axis=1` because want a different random value for each row and not one for
-# the entire column (although probably would have been fine mostly for here)
-
-
-
-# Write the gene id and mock levels to a Tab-separated values text file
-extracted_df = genome_df[['mock_base','mock_exp']].copy() # based on http://stackoverflow.com/questions/34682828/pandas-extracting-specific-selected-columns-from-a-dataframe-to-new-dataframe ,
-# see `Process of making median and mean TPM tables for NMD targets.md`
-output_file_name = generate_output_file_name(annotaton_file.name, suffix_for_saving_result)
-extracted_df.to_csv(output_file_name, sep='\t',index = True) 
-sys.stderr.write( "\nMock data saved as: {}\n".format(output_file_name))
-
-
+    main()
 
 #*******************************************************************************
 ###-***********************END MAIN PORTION OF SCRIPT***********************-###
