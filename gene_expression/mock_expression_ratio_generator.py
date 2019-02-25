@@ -2,11 +2,11 @@
 # mock_expression_ratio_generator.py
 __author__ = "Wayne Decatur" #fomightez on GitHub
 __license__ = "MIT"
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 
 # mock_expression_ratio_generator.py by Wayne Decatur
-# ver 0.1
+# ver 0.2
 #
 #*******************************************************************************
 # Written in Python 2.7 to be compatible with Python 3.
@@ -23,6 +23,9 @@ __version__ = "0.1.0"
 # to have the same copy number as wild-type. Using this script I can illustrate 
 # what other results, i.e., disomy of more than one chromosomes, trisomy, etc., 
 # may sort of look like in the plots.
+# There is an option to use only one-eighth of the genes to generate mock data.
+# That can be useful for workig with large genomes, like human, in order to 
+# speed up testing / development of related scripts.
 #
 #
 #
@@ -33,6 +36,7 @@ __version__ = "0.1.0"
 #
 # VERSION HISTORY:
 # v.0.1. basic working version
+# v.0.2. refactored main part to speed up & added option to only use fraction.
 #
 # to do:
 # - initially for `ratio_by_region_dictionary` that gets used by `get_ratio_mean` function, I hard-coded it for development phase. NEXT MAKE SO it works with argparse to populate the `get_ratio_mean`-storing dictionary.
@@ -456,13 +460,17 @@ def make_mock_expression_values(row):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def mock_expression_ratio_generator(annotaton_file):
+def mock_expression_ratio_generator(annotaton_file, use_eighth=False):
     '''
     Main function of script. 
 
     Simplisitcally make data that can be used as input for the script 
     `plot_expression_across_chromosomes.py`.
     Allows for generating different relative ration for regions and chromosomes.
+
+    You can set `use_eighth` to `True` and only a random one-eigth of the genes
+    to generate mock data. Useful with large genomes, like human, in order to
+    speed up testing other scripts where mock data is used for development.
     '''
     # ANNOTATION FILE ACCESSING AND GENOME DATAFRAME INITIAL PREPARATION
     # Because it is very related and a good approach, this essentially just
@@ -482,7 +490,7 @@ def mock_expression_ratio_generator(annotaton_file):
 
     # read in annotation file
     init_genome_df = pd.read_csv(
-        annotaton_file, sep='\t', header=None, low_memory=True,
+        annotaton_file, sep='\t', header=None, low_memory=False,
         names=col_names_to_apply, comment='#',dtype=column_types) # comment handling 
     # added because I came across gtfs with a header that had `#`  at start of each 
     # line. Others must have encountered same because I saw someone dealing with it 
@@ -491,11 +499,44 @@ def mock_expression_ratio_generator(annotaton_file):
     # deprecated recently. dtypes added when speed and working with large files
     # became an issue, see 
     # https://github.com/fomightez/sequencework/issues/1#issuecomment-465760222
+    # When I tested timing lines using yeast data (gtf; 12 Mb) and 
+    # https://stackoverflow.com/a/14452178/8508004, I found it slightly faster
+    # (0.42 vs 0.50) with `low_memory=False`, and so that is why that is used. I 
+    # suspect the difference would be even starker with the 1.4 Gb human GTF. I only 
+    # ended up seeing it get this far with the because I used `sys.exit(1)` to stop 
+    # it after the read.
+    #(LATER: When just read of human gtf timed in a notebook with `%%time`, with 
+    # `low_memory=False` it took only 1 min 10s whereas it was 4min 44s when 
+    #`True`. That effort with human data was done running in Cyverse. Oddly, on
+    # Cyverse it turned out never to take that long again when `True`, usually
+    # disparity only about 40 seconds.)
 
-    # parse out gene_ids from attribute or group, i.e., 9th column in the 
-    #annotation file
+    #sys.stderr.write("...parsing genes...") # There is no point in this because I 
+    # found stderr , for reasons I don't understand, although have seen similar when
+    # working in notebooks, won't output after pandas read starts even though with 
+    # yeast gtf (12 Mb) that read is almost instantaneous (see timing above.) 
+
+  
+  
+    # Parse out gene_ids from attribute or group, i.e., 9th column in the annotation 
+    # file.
+
+    #init_genome_df = (init_genome_df[init_genome_df[init_genome_df.columns[-1]].
+        #str.contains("gene_id")]) #for yeast and human this doesn't seem to 
+        # remove anything and so there is no point trying to use it to limit to
+        # pertinent rows.
+
     init_genome_df["gene_id"] = init_genome_df.apply(extract_gene_ids, axis=1)
 
+    # Next want to end up with one entry per gene with the start and end 
+    # coordinates. I was originally doing this using the code in docstring below 
+    # but  efficiency became an issue when someone tried with human data. And
+    # I recalled learning appending can be very infficient, see 
+    # https://stackoverflow.com/a/31713471/8508004 and Tinkerbeast's comment at 
+    # https://stackoverflow.com/a/25376997/8508004 . So code after doesn't
+    # use `.append` and accomplishes the same outcome with more pythonic
+    # pandas-based steps.
+    '''
     # copy each row to a new dataframe, unless gene already present. 
     # This wil give me unique gene_ids for each and I can make that index.
     # Because it takes first occurence of each gene, it only has that as start and
@@ -517,6 +558,7 @@ def mock_expression_ratio_generator(annotaton_file):
         max_val = max(sub_df[["start","end"]].max())
         genome_df.loc[id, "start"] = min_val
         genome_df.loc[id, "end"] = max_val
+
     # provide feedback on number of unique genes identified
     sys.stderr.write("Information for {0} genes parsed...".format(len(genome_df)))
     # calculate average position
@@ -555,16 +597,44 @@ def mock_expression_ratio_generator(annotaton_file):
         genome_df["chr_as_numeric"] = genome_df.apply(
             seqname_string_to_numeric, axis=1)
     longest_chr_or_scaffold = len(max(seqname_set, key=len))
-    # Prepare genome dataframe for adding the mock data by adding a column for relative 
-    # level and fill with 'NaN'
+    # Prepare genome dataframe for adding the mock data by adding a column for 
+    # relative level and fill with 'NaN'
     genome_df["level_val"] = np.nan
+    '''
+    # Use groupby and `.agg()` to get min and max. Then move the multi-index
+    # datafram produced to single index, where gene_id is the index, and the
+    # 'seqname' gets moved from hierarchical index to a column.
+    genome_df = init_genome_df.groupby(
+        ["gene_id","seqname"]).agg({'start': min,'end': max}) 
+    genome_df = genome_df.reset_index(level=['seqname']) #based on 
+    # https://stackoverflow.com/a/20461206/8508004
+    # provide feedback on number of unique genes identified
+    sys.stderr.write("Information for {0} genes parsed.."
+        ".".format(len(genome_df)))
+
+    # limit to a fraction if `use_eighth` indicated
+    if use_eighth:
+        from sklearn.model_selection import train_test_split
+        train, test = train_test_split(
+        genome_df, test_size=0.125) #1/8 =0.125
+        genome_df = test
+        sys.stderr.write("\nBecause `use_eighth` indicated, {0} genes will be "
+            "in total...".format(len(genome_df)))
+
+
+    # calculate average position
+    # genome_df["position"] = genome_df[["start","end"]].apply(np.mean, axis=1) # gives float and I'd prefer as integer
+    genome_df["position"] = genome_df.apply(calculate_position, axis=1)
+
+
+
 
 
 
     # For ease and consistency between the related scripts, add the mock data to 
     # the "level_val" column that is made in the course of the initial part of 
     # script `plot_expression_across_chromosomes.py`
-    sys.stderr.write("Filling in the mock values for each gene...")
+    sys.stderr.write("\nFilling in the mock values for each gene...")
     genome_df["level_val"] = genome_df.apply(get_ratio_value, axis=1)
 
 
@@ -608,6 +678,7 @@ def main():
     kwargs = {}
     #if df_save_as_name == 'no_pickling':
     #   kwargs['pickle_df'] = False
+    kwargs['use_eighth'] = use_eighth
     #kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
     mock_expression_ratio_generator(annotaton_file,**kwargs)
@@ -643,6 +714,12 @@ if __name__ == "__main__" and '__file__' in globals():
     chromosomes or scaffolds.", 
     type=argparse.FileType('r'), metavar="ANNOTATION_FILE")
 
+    parser.add_argument("-ue", "--use_eighth", help="Add this optional flag \
+        if using a large GTF/GFF file, such as 1.4 Gb human GTF, and want\
+        only an eigth of the genes used to speed up generation of mock data, \
+        and any subsequenct uses\
+        .",action="store_true")
+
 
 
     #I would also like trigger help to display if no arguments provided because 
@@ -652,6 +729,7 @@ if __name__ == "__main__" and '__file__' in globals():
         sys.exit(1)
     args = parser.parse_args()
     annotaton_file = args.annotation
+    use_eighth = args.use_eighth
 
 
     main()
