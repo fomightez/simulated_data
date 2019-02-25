@@ -345,7 +345,7 @@ def nonneg_random_norm_distr(number):
     generator for normal distribution
     '''
     while True:
-        rn = np.random.normal(loc=number, scale=0.8)
+        rn = np.random.normal(loc=number, scale=0.4)
         if rn >= 0.000:
             yield rn
         else:
@@ -363,7 +363,7 @@ def get_noisy_value(ratio_mean):
     normal distribution centered on the ratio mean.
     '''
     normal_distribution_val = next(nonneg_random_norm_distr(ratio_mean))
-    if decision(0.0008):
+    if decision(0.0012):
         # print ("...making some noise now..") #for debugging 
         return normal_distribution_val +  random.uniform(1,10) # I picked adding
         # because it seemed without noise a good range of values with log2 below
@@ -517,7 +517,7 @@ def mock_expression_ratio_generator(annotaton_file, use_eighth=False):
     # yeast gtf (12 Mb) that read is almost instantaneous (see timing above.) 
 
   
-  
+
     # Parse out gene_ids from attribute or group, i.e., 9th column in the annotation 
     # file.
 
