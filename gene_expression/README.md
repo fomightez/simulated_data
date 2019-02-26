@@ -51,7 +51,7 @@ Script `USER ADJUSTABLE VALUES  ` edited to have as `ratio_by_region_dictionary`
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
 "XII":{(1,1078177):2.0},
-"XVI":{(1,98010):3.0, (118010,948010):3.0} 
+"XVI":{(1,98010):3.0} 
 }
 ```
 
