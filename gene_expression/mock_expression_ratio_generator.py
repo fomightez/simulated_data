@@ -23,9 +23,9 @@ __version__ = "0.2.0"
 # to have the same copy number as wild-type. Using this script I can illustrate 
 # what other results, i.e., disomy of more than one chromosomes, trisomy, etc., 
 # may sort of look like in the plots.
-# There is an option to use only one-eighth of the genes to generate mock data.
+# There is an option to use only a fraction of the genes to generate mock data.
 # That can be useful for workig with large genomes, like human, in order to 
-# speed up testing / development of related scripts.
+# speed up testing / development of related scripts. Default is one eighth.
 #
 #
 #
@@ -67,6 +67,8 @@ __version__ = "0.2.0"
 ##################################
 #
 
+fraction_to_use = 0.125 #fraction to use when `use_fraction` flag used on command 
+# line or when `use_fraction=True` supplied to main function; 1/8 = 0.125 
 
 # `genome_annotation_fields` to match your genome annotation source data. You'll 
 # most likely only need one of these. 
@@ -460,17 +462,23 @@ def make_mock_expression_values(row):
 #*******************************************************************************
 ###------------------------'main' function of script--------------------------##
 
-def mock_expression_ratio_generator(annotaton_file, use_eighth=False):
+def mock_expression_ratio_generator(annotaton_file, use_fraction=False, 
+    fraction_to_use=fraction_to_use):
     '''
     Main function of script. 
 
-    Simplisitcally make data that can be used as input for the script 
+    Simplisitcally makes data that can be used as input for the script 
     `plot_expression_across_chromosomes.py`.
-    Allows for generating different relative ration for regions and chromosomes.
+    Allows for generating different relative ratios for regions and chromosomes.
 
-    You can set `use_eighth` to `True` and only a random one-eigth of the genes
+    You can set `use_fraction` to `True` and only a random fraction of the genes
     to generate mock data. Useful with large genomes, like human, in order to
     speed up testing other scripts where mock data is used for development.
+
+    The default fraction is 0.125 , a.k.a, an eighth. However, `fraction_to_use`
+    can be supplied when calling the main function with `use_fraction=True`. If 
+    using the script on the command line then edit `fraction_to_use` under 
+    'USER ADJUSTABLE VALUES' before running it.
     '''
     # ANNOTATION FILE ACCESSING AND GENOME DATAFRAME INITIAL PREPARATION
     # Because it is very related and a good approach, this essentially just
@@ -612,14 +620,14 @@ def mock_expression_ratio_generator(annotaton_file, use_eighth=False):
     sys.stderr.write("Information for {0} genes parsed.."
         ".".format(len(genome_df)))
 
-    # limit to a fraction if `use_eighth` indicated
-    if use_eighth:
+    # limit to a fraction if `use_fraction` indicated
+    if use_fraction:
         from sklearn.model_selection import train_test_split
         train, test = train_test_split(
-        genome_df, test_size=0.125) #1/8 =0.125
+        genome_df, test_size = fraction_to_use)
         genome_df = test
-        sys.stderr.write("\nBecause `use_eighth` indicated, {0} genes will be "
-            "in total...".format(len(genome_df)))
+        sys.stderr.write("\nBecause `use_fraction` indicated, {0} genes will be "
+            "used in total...".format(len(genome_df)))
 
 
     # calculate average position
@@ -678,7 +686,7 @@ def main():
     kwargs = {}
     #if df_save_as_name == 'no_pickling':
     #   kwargs['pickle_df'] = False
-    kwargs['use_eighth'] = use_eighth
+    kwargs['use_fraction'] = use_fraction
     #kwargs['return_df'] = False #probably don't want dataframe returned if 
     # calling script from command line
     mock_expression_ratio_generator(annotaton_file,**kwargs)
@@ -714,10 +722,12 @@ if __name__ == "__main__" and '__file__' in globals():
     chromosomes or scaffolds.", 
     type=argparse.FileType('r'), metavar="ANNOTATION_FILE")
 
-    parser.add_argument("-ue", "--use_eighth", help="Add this optional flag \
-        if using a large GTF/GFF file, such as 1.4 Gb human GTF, and want\
-        only an eigth of the genes used to speed up generation of mock data, \
-        and any subsequenct uses\
+    parser.add_argument("-uf", "--use_fraction", help="Add this optional flag \
+        if using a large GTF/GFF file, such as 1.4 Gb human GTF, and want \
+        only use a random fraction of the genes to speed up generation of mock \
+        data and any subsequent applications of that mock data. Default is to \
+        use one eighth of the data and that value be adjusted by editing \
+        `fraction_to_use` under 'USER ADJUSTABLE VALUES' in the script\
         .",action="store_true")
 
 
@@ -729,7 +739,7 @@ if __name__ == "__main__" and '__file__' in globals():
         sys.exit(1)
     args = parser.parse_args()
     annotaton_file = args.annotation
-    use_eighth = args.use_eighth
+    use_fraction = args.use_fraction
 
 
     main()
