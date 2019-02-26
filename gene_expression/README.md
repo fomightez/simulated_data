@@ -50,8 +50,8 @@ Script `USER ADJUSTABLE VALUES  ` edited to have as `ratio_by_region_dictionary`
 ```python
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
-"XII":{(1,1078177):2.0},
-"XVI":{(1,98010):3.0} 
+"XII":{(1,107817):2.0, (646906,862541.6):3.0},
+"XVI":{(1,98010):3.0},
 }
 ```
 
