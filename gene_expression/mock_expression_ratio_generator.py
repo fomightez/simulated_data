@@ -105,8 +105,8 @@ suffix_for_saving_result = "_mock_expression_ratios.tsv"
 
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
-"XII":{(1,1078177):2.0},
-"XVI":{(1,98010):3.0, (118010,948010):3.0},
+"XII":{(1,107817):2.0, (646906,862541.6):3.0},
+"XVI":{(1,98010):3.0},
 "7":{(1,159345973):2.0}, 
 "11":{(1,135086622):3.0}, 
 } # This is a dictionary of dictionaries for each chromosome region that differs
@@ -395,7 +395,7 @@ def overlap(a,b):
 def get_ratio_mean_for_region(row):
     '''
     function to use the ratio_by_region_dictionary to get mean ratio for regions
-    that are in on the chromosomes or scaffolds that vary from baseline.
+    that are in regions on the chromosomes or scaffolds that vary from baseline.
 
     returns a float that will be used as mean ratio 
 
@@ -409,10 +409,9 @@ def get_ratio_mean_for_region(row):
     for region in ratio_by_region_dict:
         if overlap((region[0], region[1]),(row["start"],row["end"])):
             return ratio_by_region_dict[region]
-        else:
-            # if no overlap, the ratio mean for the gene or feature is assumed
-            # to be 1.0 because same as baseline.
-            return 1.0
+    # if no overlap with any region, the ratio mean for the gene or feature is 
+    # assumed to be 1.0 because same as baseline.
+    return 1.0
 
 
 def get_ratio_value(row):
