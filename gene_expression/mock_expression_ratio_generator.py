@@ -106,7 +106,9 @@ suffix_for_saving_result = "_mock_expression_ratios.tsv"
 ratio_by_region_dictionary = {
 "I":{(1,230218):2.0}, 
 "XII":{(1,1078177):2.0},
-"XVI":{(1,98010):3.0, (118010,948010):3.0} 
+"XVI":{(1,98010):3.0, (118010,948010):3.0},
+"7":{(1,159345973):2.0}, 
+"11":{(1,135086622):3.0}, 
 } # This is a dictionary of dictionaries for each chromosome region that differs
 # from a "typical" mean of 1.0 expression ratio realtive the baseline. The keys 
 # of the main dictionary are the chromosome or scaffold designations. These 
