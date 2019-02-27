@@ -16,7 +16,7 @@ __version__ = "0.2.0"
 # Takes all genes in a gtf (or gff) and parses that data and then puts a one to
 # one ratio for all the data except chromosome regions marked as having 
 # different expression ratio relative baseline. Puts those as random normal
-# distributions around that value. Saves the data as a Tab-seperated values file
+# distributions around that value. Saves the data as a Tab-separated values file
 # that can be used by `plot_expression_across_chromosomes.py` and related 
 # scripts in conjunction with the gtf file to make plots. Currently, I only have
 # real RNA-Seq data with disomy of one yeast chromosome, and strains that seem
@@ -79,25 +79,25 @@ genome_annotation_fields_for_gff = ("seqname", "source", "feature type", "start"
 genome_annotation_fields_for_bed = ("chrom", "chromStart", "chromEnd", "name", 
     "score", "strand", "thickStart", "thickEnd", "itemRgb", "blockCount", 
     "blockSizes", "blockStarts")
-column_types_for_gff  = {"seqname":'category',
-                "source":'category',
-                "feature type":'category',
+column_types_for_gff  = {"seqname":'object',
+                "source":'object',
+                "feature type":'object',
                 "start":'int64',
                 "end":'int64',
-                "score":'category',
-                "strand":'category',
-                "frame":'category',
-                "group":'category',
+                "score":'object',
+                "strand":'object',
+                "frame":'object',
+                "group":'object',
                }
-column_types_for_gtf = {"seqname":'category',
-                "source":'category',
-                "feature type":'category',
+column_types_for_gtf = {"seqname":'object',
+                "source":'object',
+                "feature type":'object',
                 "start":'int64',
                 "end":'int64',
-                "score":'category',
-                "strand":'category',
-                "frame":'category',
-                "attribute":'category',
+                "score":'object',
+                "strand":'object',
+                "frame":'object',
+                "attribute":'object',
                }
 
 suffix_for_saving_result = "_mock_expression_ratios.tsv"
