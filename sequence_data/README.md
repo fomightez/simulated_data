@@ -21,6 +21,10 @@ Software by others I have encountered
   - Randomseq.py http://www.medcrave.com/articles/det/15292/Randomseq-python-command-ndash-line-random-sequence-generator https://medcraveonline.com/MOJPB/MOJPB-07-00235.pdf [code at https://github.com/mauriceling/bactome; (secret looks like a good package to at least know about); references NullSeq and seems to add more bells and whistles; (I used it in a demo of a script [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb#Preparing-for-usage-example) to easily generate a multi-record FASTA file.)
 
 
+- Perl-based software
+
+  - [simuG: a general-purpose genome simulator](https://github.com/yjx1217/simuG) is a simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants by Jia-Xing Yue & Gianni Liti.
+
 
 Related
 -------
