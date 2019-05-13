@@ -3,7 +3,7 @@ A repository for code that generates various simulated data.
 
 Subfolders found here concern:
 
-* [raw nucleic acid or protein sequences](https://github.com/fomightez/simulated_data/tree/master/sequence_data)
+* [raw nucleic acid (even genomic) or protein sequences](https://github.com/fomightez/simulated_data/tree/master/sequence_data)
 
 * [gene expression](https://github.com/fomightez/simulated_data/tree/master/gene_expression)
 
