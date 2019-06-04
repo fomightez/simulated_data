@@ -611,12 +611,18 @@ def mock_expression_ratio_generator(annotaton_file, use_fraction=False,
     genome_df["level_val"] = np.nan
     '''
     # Use groupby and `.agg()` to get min and max. Then move the multi-index
-    # datafram produced to single index, where gene_id is the index, and the
+    # dataframe produced to single index, where gene_id is the index, and the
     # 'seqname' gets moved from hierarchical index to a column.
     genome_df = init_genome_df.groupby(
         ["gene_id","seqname"]).agg({'start': min,'end': max}) 
     genome_df = genome_df.reset_index(level=['seqname']) #based on 
-    # https://stackoverflow.com/a/20461206/8508004
+    # https://stackoverflow.com/a/20461206/8508004 . Note that I later realized 
+    # I could have also just used `
+    # genome_df = init_genome_df.groupby(["gene_id"]).agg({"seqname":'first','start': min,'end': max})`
+    # to do the aggregating and level reset as well. Don't know yet why `first` 
+    # needs quotes but I tried and it worked based on seeing `first in use at 
+    # https://www.shanelynn.ie/summarising-aggregation-and-grouping-data-in-python-pandas/ .
+    # (Noting this thoroughly here b/c gist snippets points here for `groupby`.)
     # provide feedback on number of unique genes identified
     sys.stderr.write("Information for {0} genes parsed.."
         ".".format(len(genome_df)))
