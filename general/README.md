@@ -33,6 +33,13 @@ Related software by others I have encountered
 
 * [wakefield](https://github.com/trinker/wakefield) - generates random R data sets and has some tools for visualization
 
+>"Whoa, the wakefield package in #rstats is incredibly helpful for manufacturing example data. Look at the effect of this fake math camp on fake grad school GPAs! 
+(full reproducible code here: https://gist.github.com/andrewheiss/51f60fc2a410ca0d321d942153b955e7)
+(package link: https://github.com/trinker/wakefield)" SOURCE:[Andrew Heiss](https://twitter.com/andrewheiss/status/1179566764335730688)
+
+*[fabricatr](https://declaredesign.org/r/fabricatr/)
+>"See also the fabricatr package, which lets you do this with panel data and other nested structures:"SOURCE:[Andrew Heiss](https://twitter.com/andrewheiss/status/1179566764335730688)
+
 * >"Need to mock or fake something in #Rstats? Check out these packages of @sckottie's at @rOpenSci
 📦 https://github.com/ropensci/charlatan … for creating fake data
 📦 https://github.com/ropensci/webmockrfor … for stubbing and setting expectations on HTTP requests" - https://twitter.com/ma_salmon/status/993736067022053377
