@@ -21,7 +21,7 @@ Software by others I have encountered
   - Randomseq.py http://www.medcrave.com/articles/det/15292/Randomseq-python-command-ndash-line-random-sequence-generator https://medcraveonline.com/MOJPB/MOJPB-07-00235.pdf [code at https://github.com/mauriceling/bactome; (secret looks like a good package to at least know about); references NullSeq and seems to add more bells and whistles; (I used it in a demo of a script [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb#Preparing-for-usage-example) to easily generate a multi-record FASTA file.)
   
   - [DeepSimulator1.5: a more powerful, quicker and lighter simulator for Nanopore sequencing ](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz963/5698265)
-  >"The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing."
+  >"The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing."- https://github.com/lykaust15/DeepSimulator
 
 
 - Perl-based software
