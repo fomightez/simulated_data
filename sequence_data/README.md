@@ -31,4 +31,4 @@ Related
 
 See [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression) for generating RNA-seq mainly/only(?) count data.
 
-The bottom of [the top page in this repo](https://github.com/fomightez/simulated_data) references a link to [long-read mock microbial community data from PromethION and 36G from MinION ](https://github.com/LomanLab/mockcommunity).
+The bottom of [the top page in this repo](https://github.com/fomightez/simulated_data#related) references a link to [long-read mock microbial community data from PromethION and 36G from MinION ](https://github.com/LomanLab/mockcommunity).
