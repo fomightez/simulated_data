@@ -23,7 +23,7 @@ Software by others I have encountered
   - [DeepSimulator1.5: a more powerful, quicker and lighter simulator for Nanopore sequencing ](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz963/5698265)
   >"The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing."- https://github.com/lykaust15/DeepSimulator
   
-  -[VCFy](https://github.com/cartoonist/vcfy) 
+  - [VCFy](https://github.com/cartoonist/vcfy) 
   VCFY generates a VCF file with simulated random variants (SNPs) based on the given probability model for a specified region of a reference genome. There is a related script included tha reports the the number of SNPs in all k-mer.
 
 
