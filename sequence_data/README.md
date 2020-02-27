@@ -15,21 +15,21 @@ Software by others I have encountered
 - Advanced Python-based software
 
   - NullSeq https://www.ncbi.nlm.nih.gov/pubmed/27835644  https://github.com/amarallab/NullSeq  
-  >" Using the principle of maximum entropy, we developed a method that generates unbiased random sequences with pre-specified amino acid and GC content, which we have developed into a python package. "
+    >" Using the principle of maximum entropy, we developed a method that generates unbiased random sequences with pre-specified amino acid and GC content, which we have developed into a python package. "
 
 
   - Randomseq.py http://www.medcrave.com/articles/det/15292/Randomseq-python-command-ndash-line-random-sequence-generator https://medcraveonline.com/MOJPB/MOJPB-07-00235.pdf [code at https://github.com/mauriceling/bactome; (secret looks like a good package to at least know about); references NullSeq and seems to add more bells and whistles; (I used it in a demo of a script [here](https://nbviewer.jupyter.org/github/fomightez/cl_sq_demo-binder/blob/master/notebooks/demo%20get_specified_length_of_end_of_seq_from_FASTA.ipynb#Preparing-for-usage-example) to easily generate a multi-record FASTA file.)
   
   - [DeepSimulator1.5: a more powerful, quicker and lighter simulator for Nanopore sequencing ](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btz963/5698265)  
-  >"The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing."- https://github.com/lykaust15/DeepSimulator
+    >"The first deep learning based Nanopore simulator which can simulate the process of Nanopore sequencing."- https://github.com/lykaust15/DeepSimulator
   
   - [VCFy](https://github.com/cartoonist/vcfy)  
   VCFY generates a VCF file with simulated random variants (SNPs) based on the given probability model for a specified region of a reference genome. There is a related script, ksnper, included in that repostiory that reports the the number of SNPs in all k-mers.
   
   - [Hypothesis-Bio](https://github.com/Lab41/hypothesis-bio/)
   Hypothesis-Bio is a Hypothesis extension for property-based testing of bioinformatic software andutomates the testing process to validate the correctness of bioinformatics tools by generating a wide range of test cases beyond human testers. As part of it, it includes abilities to generate various biological data formats:
-  >"This module provides a Hypothesis strategy for generating biological data formats. This can be used to efficiently and thoroughly test your code. Currently supports DNA, RNA, protein, CDS, k-mers, FASTA, & FASTQ formats."
-  Learned of it due to [this post](https://twitter.com/Evilution84/status/1233046121087414272) which may also offer more suggestions for making simulated data.
+    >"This module provides a Hypothesis strategy for generating biological data formats. This can be used to efficiently and thoroughly test your code. Currently supports DNA, RNA, protein, CDS, k-mers, FASTA, & FASTQ formats."  
+    Learned of it due to [this post](https://twitter.com/Evilution84/status/1233046121087414272) which may also offer more suggestions for making simulated data.
 
 
 - Perl-based software
