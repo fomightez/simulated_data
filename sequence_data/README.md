@@ -29,6 +29,7 @@ Software by others I have encountered
   - [Hypothesis-Bio](https://github.com/Lab41/hypothesis-bio/)
   Hypothesis-Bio is a Hypothesis extension for property-based testing of bioinformatic software andutomates the testing process to validate the correctness of bioinformatics tools by generating a wide range of test cases beyond human testers. As part of it, it includes abilities to generate various biological data formats:
   >"This module provides a Hypothesis strategy for generating biological data formats. This can be used to efficiently and thoroughly test your code. Currently supports DNA, RNA, protein, CDS, k-mers, FASTA, & FASTQ formats."
+  Learned of it due to [this post](https://twitter.com/Evilution84/status/1233046121087414272) which may also offer more suggestions for making simulated data.
 
 
 - Perl-based software
