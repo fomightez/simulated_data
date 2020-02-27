@@ -25,6 +25,10 @@ Software by others I have encountered
   
   - [VCFy](https://github.com/cartoonist/vcfy)  
   VCFY generates a VCF file with simulated random variants (SNPs) based on the given probability model for a specified region of a reference genome. There is a related script, ksnper, included in that repostiory that reports the the number of SNPs in all k-mers.
+  
+  - [Hypothesis-Bio](https://github.com/Lab41/hypothesis-bio/)
+  Hypothesis-Bio is a Hypothesis extension for property-based testing of bioinformatic software andutomates the testing process to validate the correctness of bioinformatics tools by generating a wide range of test cases beyond human testers. As part of it, it includes abilities to generate various biological data formats:
+  >"This module provides a Hypothesis strategy for generating biological data formats. This can be used to efficiently and thoroughly test your code. Currently supports DNA, RNA, protein, CDS, k-mers, FASTA, & FASTQ formats."
 
 
 - Perl-based software
