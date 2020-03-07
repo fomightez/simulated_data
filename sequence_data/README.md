@@ -36,6 +36,7 @@ Software by others I have encountered
 - Perl-based software
 
   - [simuG: a general-purpose genome simulator](https://github.com/yjx1217/simuG) is a simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants by Jia-Xing Yue & Gianni Liti.
+  -[seqrequester](https://github.com/marbl/seqrequester#simulating) includes a mode for simulating reads from a supplied genome. Looks like it has 'ultra-long-nanopore', 'pacbio' , and 'pacbio-hifi' distribution settings.
 
 
 Related
