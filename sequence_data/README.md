@@ -37,6 +37,8 @@ Software by others I have encountered
 
   - [simuG: a general-purpose genome simulator](https://github.com/yjx1217/simuG) is a simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants by Jia-Xing Yue & Gianni Liti.
   
+  - [Ragroc](http://natir.github.io/ragroc/) - allows you to generate random sequences (in raw, fasta, fastq format) and make reverse complement. All the computation are done on the browser in webassembly.
+  
   - [seqrequester](https://github.com/marbl/seqrequester#simulating) includes a mode for simulating reads from a supplied genome. Looks like it has 'ultra-long-nanopore', 'pacbio' , and 'pacbio-hifi' distribution settings.
 
 
