@@ -45,6 +45,9 @@ Software by others I have encountered
 Related
 -------
 
-See [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression) for generating RNA-seq mainly/only(?) count data.
+- See [here](https://github.com/fomightez/simulated_data/tree/master/gene_expression) for generating RNA-seq mainly/only(?) count data.
 
-The bottom of [the top page in this repo](https://github.com/fomightez/simulated_data#related) references a link to [long-read mock microbial community data from PromethION and 36G from MinION ](https://github.com/LomanLab/mockcommunity).
+- The bottom of [the top page in this repo](https://github.com/fomightez/simulated_data#related) references a link to [long-read mock microbial community data from PromethION and 36G from MinION ](https://github.com/LomanLab/mockcommunity).
+
+- [ART - Set of simulation tools](https://www.niehs.nih.gov/research/resources/software/biostatistics/art/)
+    >"ART is a set of simulation tools to generate synthetic next-generation sequencing reads. ART simulates sequencing reads by mimicking real sequencing process with empirical error models or quality profiles summarized from large recalibrated sequencing data. ART can also simulate reads using user own read error model or quality profiles. ART supports simulation of single-end, paired-end/mate-pair reads of three major commercial next-generation sequencing platforms: Illumina's Solexa, Roche's 454 and Applied Biosystems' SOLiD. ... ART is implemented in C++ ..."
