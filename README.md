@@ -18,10 +18,10 @@ Subfolders found here concern:
 Related efforts by others
 -------------------------
 
-- "select 5-10 Mb of neutral DNA sequences in the human genome"
-https://twitter.com/cegAmorim/status/1646158398071754755
+- "select 5-10 Mb of neutral DNA sequences in the human genome": 
+https://twitter.com/cegAmorim/status/1646158398071754755  
 >"What is a good and easy way to select 5-10 Mb of neutral DNA sequences in the human genome? Would selecting random intergenic regions (say >10Kb away from genes) be enough? Has someone done something similar recently in a paper I could cite and use the same loci?"
-https://twitter.com/vsbuffalo/status/1646212322833334272
+https://twitter.com/vsbuffalo/status/1646212322833334272   
 >"I had to do this recently — I took all exonic + phastcons + UTRS, merged them, and then add 200bp of buffer on both ends (all using bedtools). You could do this and even select out random regions. I did some sensitivity analysis and comparison to the CADD tracks and seemed good."
 >"Also (and perhaps this is being too paranoid) but I  merged the refseq and ensembl tracks. They differ slightly in their percent of basepairs that annotated as coding, so I took the union."
 
