@@ -42,3 +42,7 @@ Thanks, @nanopore for providing the pore-model."
 - a script that allows for using long reads make mock short read data:
 [Create short paired-end reads from long reads](https://github.com/Chartiza/Microbiome/tree/main/long_reads_to_short_PE_reads)
 >"To test different approaches for assembling genomes, I needed data with known microbial content. Only long reads were available, but I needed to test the algorithm on short paired-end reads. This script was written to create short reads from long reads."
+
+- Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
+>"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
+scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"
