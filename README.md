@@ -34,8 +34,10 @@ https://twitter.com/Hasindu2008/status/1628569325895585793
 >"Squigulator r10 branch https://github.com/hasindu2008/squigulator/tree/r10 can simulate r10.4.1 signals. Also f5c r10 branch https://github.com/hasindu2008/f5c/tree/r10 can do resquiggle and eventalign for R10.4.1.
 Note: still work in progress and improvements are on the way. 
 Thanks, @nanopore for providing the pore-model."
-- [Squigulator](https://github.com/hasindu2008/squigulator/tree/r10) - "a tool for simulating nanopore raw signal data"
-- Plus, "...f5c r10 branch https://github.com/hasindu2008/f5c/tree/r10 can do resquiggle and eventalign for R10.4.1"
+  - [Squigulator](https://github.com/hasindu2008/squigulator/tree/r10) - "a tool for simulating nanopore raw signal data"
+  - Plus, "...f5c r10 branch https://github.com/hasindu2008/f5c/tree/r10 can do resquiggle and eventalign for R10.4.1"
+  - https://twitter.com/Hasindu2008/status/1656470090668449793 May 2023
+    >"Here is a pre-print for squigulator: a tool for simulating @nanopore raw signal data https://biorxiv.org/content/10.1101/2023.05.09.539953 Squigulator is easy to use, simple, fast, supports dna/rna and r9/r10 and  modifiable parameters, and the output can be basecalled using nanopore basecallers."
 
 - a script that allows for using long reads make mock short read data:
 [Create short paired-end reads from long reads](https://github.com/Chartiza/Microbiome/tree/main/long_reads_to_short_PE_reads)
