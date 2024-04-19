@@ -181,15 +181,15 @@ def extract_gene_ids(row):
     formatted in Ensembl format, for example Ensembl-formatted yeast genome from 
     ftp://igenome:G3nom3s4u@ussd-ftp.illumina.com/Saccharomyces_cerevisiae/Ensembl/R64-1-1/Saccharomyces_cerevisiae_Ensembl_R64-1-1.tar.gz
     Here the annotation file has been read in as a pandas dataframe and the 
-    `attributes` field is in column 9, specified by `row[8]` in the code.
-    Using that instead of the column name because not called attribures list
+    `attributes` field is in column 9, specified by `row.iloc[8]` in the code.
+    Using that instead of the column name because not called attributes list
     in the gff format but it has `group` field at same position.
 
     takes a row of a pandas dataframe derived from an annotation file
 
     returns a string of the systematic gene id
     '''
-    return row[8].split("gene_id")[1].split('"')[1].strip()
+    return row.iloc[8].split("gene_id")[1].split('"')[1].strip()
 
 def calculate_position(row):
     '''
@@ -614,11 +614,11 @@ def mock_expression_ratio_generator(annotaton_file, use_fraction=False,
     # dataframe produced to single index, where gene_id is the index, and the
     # 'seqname' gets moved from hierarchical index to a column.
     genome_df = init_genome_df.groupby(
-        ["gene_id","seqname"]).agg({'start': min,'end': max}) 
+        ["gene_id","seqname"]).agg({'start': 'min','end': 'max'}) 
     genome_df = genome_df.reset_index(level=['seqname']) #based on 
     # https://stackoverflow.com/a/20461206/8508004 . Note that I later realized 
     # I could have also just used `
-    # genome_df = init_genome_df.groupby(["gene_id"]).agg({"seqname":'first','start': min,'end': max})`
+    # genome_df = init_genome_df.groupby(["gene_id"]).agg({"seqname":'first','start': 'min','end': 'max'})`
     # to do the aggregating and level reset as well. Don't know yet why `first` 
     # needs quotes but I tried and it worked based on seeing `first in use at 
     # https://www.shanelynn.ie/summarising-aggregation-and-grouping-data-in-python-pandas/ .
