@@ -46,3 +46,12 @@ Thanks, @nanopore for providing the pore-model."
 - Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
 >"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
 scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"
+
+Only Tangentially Related
+--------------------------
+
+https://x.com/RobAboukhalil/status/1808602458698232258     July 2024
+>"When writing bioinformatics tools, I often need small datasets to test edge cases or invalid file formats, e.g. files that are truncated, unsorted, have extraneous whitespace, etc.
+I started compiling examples here: https://github.com/omgenomics/bio-data-zoo, contributions are welcome!"
+    [Bio Data Zoo](https://github.com/omgenomics/bio-data-zoo)  
+    >"This repo contains example data in various genomics file formats. It is intended for bioinformatics tool developers to make testing software easier. It includes examples of valid file formats, edge cases, and invalid formats."
