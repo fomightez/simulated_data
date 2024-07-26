@@ -45,7 +45,7 @@ Thanks, @nanopore for providing the pore-model."
 
 - Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
 >"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
-scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"
+scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"  (The [scDesign3 Github repo](https://github.com/SONGDONGYUAN1994/scDesign3))
 
 Only Tangentially Related
 --------------------------
