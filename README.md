@@ -43,6 +43,10 @@ Thanks, @nanopore for providing the pore-model."
 [Create short paired-end reads from long reads](https://github.com/Chartiza/Microbiome/tree/main/long_reads_to_short_PE_reads)
 >"To test different approaches for assembling genomes, I needed data with known microbial content. Only long reads were available, but I needed to test the algorithm on short paired-end reads. This script was written to create short reads from long reads."
 
+- [simuG: a general-purpose genome simulator.](https://github.com/yjx1217/simuG) "A simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants." ... "simuG as a light-weighted tool for simulating the full spectrum of genomic variants (SNPs, INDELs, CNVs, inversions, and translocations)." Learned if from an answer to ['To randomly generate a list of insertions and deletions'](https://www.biostars.org/p/9599960/)
+
+A simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants.
+
 - Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
 >"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
 scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"  (The [scDesign3 Github repo](https://github.com/SONGDONGYUAN1994/scDesign3))
