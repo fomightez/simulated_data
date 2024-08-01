@@ -45,7 +45,11 @@ Thanks, @nanopore for providing the pore-model."
 
 - [simuG: a general-purpose genome simulator.](https://github.com/yjx1217/simuG) "A simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants." ... "simuG as a light-weighted tool for simulating the full spectrum of genomic variants (SNPs, INDELs, CNVs, inversions, and translocations)." Learned if from an answer to ['To randomly generate a list of insertions and deletions'](https://www.biostars.org/p/9599960/)
 
-- Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
+- Single cell:
+[scReadSim: a single-cell RNA-seq and ATAC-seq read simulator](https://github.com/JSB-UCLA/scReadSim), which I learned of at the bottom of [scDesign3](https://github.com/SONGDONGYUAN1994/scDesign3) under 'Related Manuscripts'.
+From abstract: "To fill this gap, we introduce scReadSim, a single-cell RNA-seq and ATAC-seq read simulator that allows user-specified ground truths and generates synthetic sequencing reads (in a FASTQ or BAM file) by mimicking real data." 
+
+- scDesign3 for Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
 >"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
 scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"  (The [scDesign3 Github repo](https://github.com/SONGDONGYUAN1994/scDesign3))
 
