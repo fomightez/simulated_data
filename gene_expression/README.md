@@ -125,6 +125,9 @@ Related software by others I have encountered
 
 * [Splatter: Simulation Of Single-Cell RNA-seq](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1305-0) -  Bioconductor (R) package for simple, reproducible and well-documented simulation of single-cell RNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types or differentiation paths.
 
+* [cypress: an R/Bioconductor package for cell-type-specific differential expression analysis power assessment ](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btae511/7735301?login=false)  - "cypress is capable of modeling and simulating various sources of variation in signal convolution and deconvolution and adopting multi-faceted statistical evaluation metrics in csDE hypothesis testing evaluation." - [SOURCE](https://x.com/razoralign/status/1825029912820129818)
+
+
 Related resources
 ----------------
 
