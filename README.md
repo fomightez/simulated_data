@@ -45,13 +45,22 @@ Thanks, @nanopore for providing the pore-model."
 
 - [simuG: a general-purpose genome simulator.](https://github.com/yjx1217/simuG) "A simple, flexible, and powerful tool to simulate genome sequences with pre-defined or random genomic variants." ... "simuG as a light-weighted tool for simulating the full spectrum of genomic variants (SNPs, INDELs, CNVs, inversions, and translocations)." Learned if from an answer to ['To randomly generate a list of insertions and deletions'](https://www.biostars.org/p/9599960/)
 
-- Single cell:
-[scReadSim: a single-cell RNA-seq and ATAC-seq read simulator](https://github.com/JSB-UCLA/scReadSim), which I learned of at the bottom of [scDesign3](https://github.com/SONGDONGYUAN1994/scDesign3) under 'Related Manuscripts'.
+* [sim.counts: RNA-seq Count Data Simulation from Negative-Binomial distribution](https://rdrr.io/cran/ssizeRNA/man/sim.counts.html) - this R function doesn't seem to allow specifically designating regions to alter levels, but you could probably further edit the simulated data to do that for genes in the region in which you are looking to alter the level relative the baseline.
+
+
+* [cypress: an R/Bioconductor package for cell-type-specific differential expression analysis power assessment ](https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btae511/7735301?login=false)  - "cypress is capable of modeling and simulating various sources of variation in signal convolution and deconvolution and adopting multi-faceted statistical evaluation metrics in csDE hypothesis testing evaluation." - [SOURCE](https://x.com/razoralign/status/1825029912820129818)
+
+Single cell:  
+- [scReadSim: a single-cell RNA-seq and ATAC-seq read simulator](https://github.com/JSB-UCLA/scReadSim), which I learned of at the bottom of [scDesign3](https://github.com/SONGDONGYUAN1994/scDesign3) under 'Related Manuscripts'.
 From abstract: "To fill this gap, we introduce scReadSim, a single-cell RNA-seq and ATAC-seq read simulator that allows user-specified ground truths and generates synthetic sequencing reads (in a FASTQ or BAM file) by mimicking real data." 
 
 - scDesign3 for Single cell: https://twitter.com/jsb_ucla/status/1656690298435821568. May 2023. 
 >"Our single-cell and spatial omics simulator scDesign3 is now online: https://nature.com/articles/s41587-023-01772-1
 scDesign3 has two functionalities: (1) synthetic data simulation and (2) real data interpretation and modification 1/"  (The [scDesign3 Github repo](https://github.com/SONGDONGYUAN1994/scDesign3))
+
+- [Splatter: Simulation Of Single-Cell RNA-seq](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1305-0) -  Bioconductor (R) package for simple, reproducible and well-documented simulation of single-cell RNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types or differentiation paths.
+
+Be sure to also see 'Related software by others I have encountered' on the page [Scripts and resources for generating simulated data for gene expression analysis](https://github.com/fomightez/simulated_data/tree/master/gene_expression) because sometimes I add to there and not here and vice versa.
 
 Only Tangentially Related
 --------------------------
