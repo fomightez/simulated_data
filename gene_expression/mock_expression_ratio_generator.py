@@ -158,7 +158,7 @@ def generate_output_file_name(file_name, suffix):
     output file. The generated name is based on the original file
     name.
 
-    It also indicates in resulting file name name specific chromsomes or 
+    It also indicates in resulting file name name specific chromosomes or 
     scaffolds if plotting was limited to those.
 
     Specific example
