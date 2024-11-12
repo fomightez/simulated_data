@@ -1,4 +1,4 @@
-# Scripts and resources for generating simulated data for general computation endeavors
+# Scripts and resources for generating simulated data for general computation endeavors / Tidy data vs. messy data, etc.
 
 My code
 -------
@@ -43,6 +43,9 @@ Related software by others I have encountered
 * >"Need to mock or fake something in #Rstats? Check out these packages of @sckottie's at @rOpenSci
 📦 https://github.com/ropensci/charlatan … for creating fake data
 📦 https://github.com/ropensci/webmockrfor … for stubbing and setting expectations on HTTP requests" - https://twitter.com/ma_salmon/status/993736067022053377
+
+*[messy](https://github.com/nrennie/messy)
+>"When teaching examples using R, instructors often using nice datasets - but these aren't very realistic, and aren't what students will later encounter in the real world. Real datasets have typos, missing values encoded in strange ways, and weird spaces. The {messy} R package takes a clean dataset, and randomly adds these things in - giving students the opportunity to practice their data cleaning and wrangling skills without having to change all of your examples."
 
 Related resources
 ----------------
