@@ -37,14 +37,14 @@ Related software by others I have encountered
 (full reproducible code here: https://gist.github.com/andrewheiss/51f60fc2a410ca0d321d942153b955e7)
 (package link: https://github.com/trinker/wakefield)" SOURCE:[Andrew Heiss](https://twitter.com/andrewheiss/status/1179566764335730688)
 
-*[fabricatr](https://declaredesign.org/r/fabricatr/)
+* [fabricatr](https://declaredesign.org/r/fabricatr/)
 >"See also the fabricatr package, which lets you do this with panel data and other nested structures:"SOURCE:[Andrew Heiss](https://twitter.com/andrewheiss/status/1179566764335730688)
 
 * >"Need to mock or fake something in #Rstats? Check out these packages of @sckottie's at @rOpenSci
 📦 https://github.com/ropensci/charlatan … for creating fake data
 📦 https://github.com/ropensci/webmockrfor … for stubbing and setting expectations on HTTP requests" - https://twitter.com/ma_salmon/status/993736067022053377
 
-*[messy](https://github.com/nrennie/messy)
+* [messy](https://github.com/nrennie/messy)
 >"When teaching examples using R, instructors often using nice datasets - but these aren't very realistic, and aren't what students will later encounter in the real world. Real datasets have typos, missing values encoded in strange ways, and weird spaces. The {messy} R package takes a clean dataset, and randomly adds these things in - giving students the opportunity to practice their data cleaning and wrangling skills without having to change all of your examples."
 
 Related resources
