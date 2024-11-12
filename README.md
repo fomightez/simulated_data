@@ -11,7 +11,7 @@ Subfolders found here concern:
 
 * [high-throughput sequencing data from phylogenetic relationships](https://github.com/fomightez/simulated_data/tree/master/across_phylogeny)
 
-* [general computational data](https://github.com/fomightez/simulated_data/tree/master/general)
+* [general computational data/ tidy data vs. messy data, etc.](https://github.com/fomightez/simulated_data/tree/master/general)
 
 
 
