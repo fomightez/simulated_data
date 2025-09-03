@@ -71,10 +71,5 @@ I started compiling examples here: https://github.com/omgenomics/bio-data-zoo, c
     [Bio Data Zoo](https://github.com/omgenomics/bio-data-zoo)   
     >"This repo contains example data in various genomics file formats. It is intended for bioinformatics tool developers to make testing software easier. It includes examples of valid file formats, edge cases, and invalid formats."
 
-['Creating messy datasets for teaching purposes with {truffle}'](https://mmmdata.io/posts/2025/08/creating-messy-datasets-for-teaching-purposes-with-truffle/):
->"{truffle} is an R package for teaching users to process data.  
-It allows you to create datasets with various known effects to be rediscovered (truffles, via truffle_ functions), and then create data processing headaches that have to be solved (dirt, via dirt_ functions). Users must then search for truffles among the dirt.  
-Generated datasets can include demographics variables and item-level Likert responses. Known effects (truffles) can be buried in the data including differences in sum-score means between conditions, known correlations between the different outcomes’ sum-scores, known Cronbach’s alpha values for each scale, etc.  
-Data can then be made dirty in several different ways to create common data processing challenges, such as poorly named columns that disagree with R, duplicate rows, missingness with irregular codings, mixed date formats, untidy demographics data with misspellings and erroneous entries, number columns with comma seperators and units, impossible values beyond the scale range, header rows that disrupt reading data into R, and untidy columns that contain more than one variable."
 
 
