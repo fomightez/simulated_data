@@ -47,6 +47,13 @@ Related software by others I have encountered
 * [messy](https://github.com/nrennie/messy)
 >"When teaching examples using R, instructors often using nice datasets - but these aren't very realistic, and aren't what students will later encounter in the real world. Real datasets have typos, missing values encoded in strange ways, and weird spaces. The {messy} R package takes a clean dataset, and randomly adds these things in - giving students the opportunity to practice their data cleaning and wrangling skills without having to change all of your examples."
 
+* ['Creating messy datasets for teaching purposes with {truffle}'](https://mmmdata.io/posts/2025/08/creating-messy-datasets-for-teaching-purposes-with-truffle/):
+>"{truffle} is an R package for teaching users to process data.  
+It allows you to create datasets with various known effects to be rediscovered (truffles, via truffle_ functions), and then create data processing headaches that have to be solved (dirt, via dirt_ functions). Users must then search for truffles among the dirt.  
+Generated datasets can include demographics variables and item-level Likert responses. Known effects (truffles) can be buried in the data including differences in sum-score means between conditions, known correlations between the different outcomes’ sum-scores, known Cronbach’s alpha values for each scale, etc.  
+Data can then be made dirty in several different ways to create common data processing challenges, such as poorly named columns that disagree with R, duplicate rows, missingness with irregular codings, mixed date formats, untidy demographics data with misspellings and erroneous entries, number columns with comma seperators and units, impossible values beyond the scale range, header rows that disrupt reading data into R, and untidy columns that contain more than one variable."
+
+
 Related resources
 ----------------
 
